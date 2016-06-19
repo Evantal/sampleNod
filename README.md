@@ -14,6 +14,7 @@ http://docs.shippable.com/ci_configure/ gives you a detailed introduction on how
   - $SHIPPABLE_BUILD_DIR/node_modules
   The cache_dir_list is an array of ABSOLUTE_PATH of the folders that needs to be cached. In the case of nodejs most of the time goes in installing all the node_modules so it makes sense to cache this particular folder. So here we give the absolute path of the node_modules directly. In a similar way if you are interested in caching some other folder, you can give the list of absolute paths to those folders.
 
+
 Internal Implementation of cache.
 1. All the users who have enabled cache have an s3 bucket created with their subscriptionId and all the projects that you cache will go into that bucket.
 2. if we first see a cache: true option in your yml, we first try to load the cache file from the bucket, if the bucket exists we extract the files to their respective location and then contiue with the git sync and subsequent CI sections. After all the CI steps are over we look at the directories that needs to cached and create zip file and push it back to the bucket.
